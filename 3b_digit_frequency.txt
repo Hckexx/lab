@@ -1,0 +1,6 @@
+# 3(b) Frequency of each digit in a multi-digit number
+num = input("Enter a number: ")
+print("The number entered is:", num)
+uDig = set(num)
+for elem in uDig:
+    print(elem, "occurs", num.count(elem), "times")

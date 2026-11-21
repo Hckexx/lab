@@ -1,0 +1,58 @@
+# 9. Text Analysis Tool
+import re
+from collections import Counter
+
+
+def analyze_text(text):
+    """Analyze text and return various statistics."""
+    words = re.findall(r"\b[a-zA-Z]+\b", text.lower())
+    word_frequency = Counter(words)
+
+    all_words = re.findall(r"\b[a-zA-Z]+\b", text)
+    longest_word = max(all_words, key=len) if all_words else ""
+    shortest_word = min(all_words, key=len) if all_words else ""
+
+    sentences = re.split(r"[.!?]+", text)
+    sentence_count = len([s for s in sentences if s.strip()])
+    word_count = len(words)
+    char_count = len(text)
+    char_no_spaces = len(text.replace(" ", ""))
+    unique_words = len(word_frequency)
+    avg_word_length = sum(len(word) for word in words) / len(words) if words else 0
+
+    return {
+        "word_frequency": word_frequency,
+        "longest_word": longest_word,
+        "shortest_word": shortest_word,
+        "sentence_count": sentence_count,
+        "word_count": word_count,
+        "char_count": char_count,
+        "char_no_spaces": char_no_spaces,
+        "unique_words": unique_words,
+        "avg_word_length": avg_word_length,
+    }
+
+
+def display_results(results):
+    print("\n=== TEXT ANALYSIS RESULTS ===")
+    print(f"Total Words: {results['word_count']}")
+    print(f"Total Sentences: {results['sentence_count']}")
+    print(f"Total Characters: {results['char_count']}")
+    print(f"Characters (no spaces): {results['char_no_spaces']}")
+    print(f"Unique Words: {results['unique_words']}")
+    print(f"Average Word Length: {results['avg_word_length']:.2f}")
+    print(f"\nLongest Word: '{results['longest_word']}' ({len(results['longest_word'])} chars)")
+    print(f"Shortest Word: '{results['shortest_word']}' ({len(results['shortest_word'])} chars)")
+
+    print("\nTop 5 Most Common Words:")
+    for word, count in results["word_frequency"].most_common(5):
+        print(f"'{word}': {count}")
+
+    print("\nAll Word Frequencies:")
+    for word, count in sorted(results["word_frequency"].items()):
+        print(f"'{word}': {count}")
+
+
+text = input("Enter text for analysis: ")
+results = analyze_text(text)
+display_results(results)

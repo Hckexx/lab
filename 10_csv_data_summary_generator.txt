@@ -1,0 +1,38 @@
+# 10. Data Summary Generator
+# Reads a CSV file and displays max, min and average for a chosen column
+import csv
+
+filename = input("Enter CSV file name (with .csv extension): ")
+data = []
+with open(filename, "r", newline="") as file:
+    reader = csv.DictReader(file)
+    for row in reader:
+        data.append(row)
+
+if not data:
+    print("The CSV file is empty!")
+else:
+    print("\nAvailable columns:")
+    columns = list(data[0].keys())
+    for col in columns:
+        print("-", col)
+
+    col_name = input("\nEnter the column name to summarize: ")
+    values = []
+    for row in data:
+        try:
+            values.append(float(row[col_name]))
+        except (ValueError, KeyError):
+            pass
+
+    if values:
+        maximum = max(values)
+        minimum = min(values)
+        average = sum(values) / len(values)
+        print("\n===== Summary Report =====")
+        print("Column:", col_name)
+        print("Maximum value:", maximum)
+        print("Minimum value:", minimum)
+        print(f"Average value: {average:.2f}")
+    else:
+        print("No numeric data found in this column!")

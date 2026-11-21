@@ -1,0 +1,33 @@
+# 4. Print 10 most frequently appearing words in a text file
+import string
+import os.path
+import sys
+
+fname = input("Enter the filename: ")
+if not os.path.isfile(fname):
+    print("File", fname, "doesn't exist")
+    sys.exit(0)
+
+with open(fname, "r") as infile:
+    filecontents = ""
+    for line in infile:
+        for ch in line:
+            if ch not in string.punctuation:
+                filecontents += ch
+            else:
+                filecontents += " "
+
+wordFreq = {}
+wordList = filecontents.split()
+for word in wordList:
+    if word not in wordFreq:
+        wordFreq[word] = 1
+    else:
+        wordFreq[word] += 1
+
+sortedWordFreq = sorted(wordFreq.items(), key=lambda x: x[1], reverse=True)
+print("\n===================================================")
+print("10 most frequently appearing words with their count")
+print("===================================================")
+for word, count in sortedWordFreq[:10]:
+    print(word, "occurs", count, "times")

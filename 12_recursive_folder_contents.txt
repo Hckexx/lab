@@ -1,0 +1,12 @@
+# 12. Display folder contents recursively
+import os
+
+path = input("Enter folder path: ")
+print("\n===== Folder contents =====")
+
+for root, dirs, files in os.walk(path):
+    print(f"\nCurrent directory: {root}")
+    for d in dirs:
+        print(f" [folder] {d}")
+    for f in files:
+        print(f" [file] {f}")

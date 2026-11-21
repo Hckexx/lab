@@ -1,0 +1,27 @@
+# 11. Student Grade Tracker
+students = []
+n = int(input("Enter number of students: "))
+
+for i in range(n):
+    print(f"\nEnter details for student {i + 1}")
+    name = input("Name: ")
+    marks = float(input("Marks (out of 100): "))
+    student = {"name": name, "marks": marks}
+    students.append(student)
+
+total_marks = 0
+topper = students[0] if students else None
+for s in students:
+    total_marks += s["marks"]
+    if s["marks"] > topper["marks"]:
+        topper = s
+
+if students:
+    average = total_marks / n
+    print("\n===== Student Summary Report =====")
+    for s in students:
+        print(f"{s['name']} scored {s['marks']} marks")
+    print(f"\nClass Average: {average:.2f}")
+    print(f"Topper: {topper['name']} with {topper['marks']} marks")
+else:
+    print("No student records entered.")

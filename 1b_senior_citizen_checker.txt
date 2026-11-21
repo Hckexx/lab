@@ -1,0 +1,13 @@
+# 1(b) Senior citizen checker
+print("=== SENIOR CITIZEN CHECKER ===")
+name = input("Enter your name: ")
+birth_year = int(input("Enter your year of birth: "))
+current_year = 2024  # As given in the PDF
+age = current_year - birth_year
+
+if age >= 60:
+    print(f"Hello {name}! You are {age} years old.")
+    print("You are a SENIOR CITIZEN.")
+else:
+    print(f"Hello {name}! You are {age} years old.")
+    print("You are NOT a senior citizen.")

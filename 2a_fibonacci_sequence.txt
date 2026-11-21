@@ -1,0 +1,14 @@
+# 2(a) Generate Fibonacci sequence of length N
+n = int(input("Enter the Fibonacci sequence length to be generated: "))
+fnum = 0
+snum = 1
+print("The Fibonacci series is:")
+if n >= 1:
+    print(fnum)
+if n >= 2:
+    print(snum)
+for i in range(2, n):
+    newnum = fnum + snum
+    print(newnum)
+    fnum = snum
+    snum = newnum

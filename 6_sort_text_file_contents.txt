@@ -1,0 +1,28 @@
+# 6. Sort the contents of a text file and write to another file
+import sys
+import os
+
+fname = input("Enter the filename whose contents are to be sorted: ")
+if not os.path.isfile(fname):
+    print("File", fname, "doesn't exist")
+    sys.exit(0)
+
+with open(fname, "r") as infile:
+    myList = infile.readlines()
+
+lineList = []
+for line in myList:
+    lineList.append(line.strip())
+lineList.sort()
+
+with open("sorted.txt", "w") as outfile:
+    for line in lineList:
+        outfile.write(line + "\n")
+
+print("\nFile containing sorted content sorted.txt created successfully")
+print("sorted.txt contains", len(lineList), "lines")
+print("Contents of sorted.txt")
+print("=================================================================")
+with open("sorted.txt", "r") as rdFile:
+    for line in rdFile:
+        print(line, end="")

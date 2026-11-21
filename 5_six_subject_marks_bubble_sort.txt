@@ -1,0 +1,54 @@
+# 5. Read 6 subject marks and sort highest to lowest using Bubble Sort
+
+def bubble_sort_descending(marks):
+    n = len(marks)
+    for i in range(n):
+        for j in range(0, n - i - 1):
+            if marks[j] < marks[j + 1]:
+                marks[j], marks[j + 1] = marks[j + 1], marks[j]
+    return marks
+
+
+def main():
+    print("=== STUDENT MARKS REPORT ===")
+    print("Enter marks for 6 subjects:")
+    marks = []
+    subjects = ["Subject 1", "Subject 2", "Subject 3", "Subject 4", "Subject 5", "Subject 6"]
+
+    for i in range(6):
+        while True:
+            try:
+                mark = float(input(f"Enter marks for {subjects[i]}: "))
+                if 0 <= mark <= 100:
+                    marks.append(mark)
+                    break
+                print("Please enter marks between 0 and 100!")
+            except ValueError:
+                print("Please enter a valid number!")
+
+    print("\n" + "=" * 50)
+    print("ORIGINAL MARKS:")
+    print("=" * 50)
+    for i in range(6):
+        print(f"{subjects[i]}: {marks[i]}")
+
+    sorted_marks = marks.copy()
+    bubble_sort_descending(sorted_marks)
+
+    print("\n" + "=" * 50)
+    print("MARKS REPORT (HIGHEST TO LOWEST):")
+    print("=" * 50)
+    for i, mark in enumerate(sorted_marks, 1):
+        print(f"Rank {i}: {mark} marks")
+
+    print("\n" + "=" * 50)
+    print("SUMMARY:")
+    print("=" * 50)
+    print(f"Highest Score: {sorted_marks[0]}")
+    print(f"Lowest Score: {sorted_marks[-1]}")
+    print(f"Average Score: {sum(marks) / len(marks):.2f}")
+    print(f"Total Marks: {sum(marks)}")
+
+
+if __name__ == "__main__":
+    main()

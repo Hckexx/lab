@@ -1,0 +1,26 @@
+# 3(a) Mean, variance and standard deviation
+from math import sqrt
+
+ml = []
+num = int(input("Enter the number of elements in your list: "))
+for i in range(num):
+    val = int(input("Enter the element: "))
+    ml.append(val)
+
+print("The length of list1 is", len(ml))
+print("List Contents", ml)
+
+total = 0
+for elem in ml:
+    total += elem
+mean = total / num
+
+total = 0
+for elem in ml:
+    total += (elem - mean) * (elem - mean)
+variance = total / num
+sd = sqrt(variance)
+
+print("Mean =", mean)
+print("Variance =", variance)
+print("Standard Deviation = %.2f" % sd)
